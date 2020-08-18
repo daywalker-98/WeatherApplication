@@ -17,11 +17,12 @@ function searchCity(event)
           }).then(function(response) 
                     {
                          var name = response.name;
+                         var IDname = name.split(' ').join('-');
                          var date = new Date(response.dt*1000);
-                         $("#city-display").html(name);
-                         $(`#${name}`).remove();
-                         var $cityButton = $(`<button class="col-12"id="${name}"></button>`).text(name); 
+                         $(`#${IDname}`).remove();
+                         var $cityButton = $(`<button class="col-12 btn-primary btn-lg"id="${IDname}"></button>`).text(name);
                          $cityButton.html = name;
+                         $("#city-display").html(name);
                          $("#city-buttons").append($cityButton);
                          let lon = response.coord.lon;
                          let lat = response.coord.lat;
@@ -55,6 +56,7 @@ function changeCity(event)
 {
      event.preventDefault();
      var cityName = this.getAttribute("id");
+     cityName = cityName.split('-').join(' ');
      let queryURL = `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&APPID=${APIkey}`;
      //ajax query here
      $.ajax({
@@ -65,7 +67,6 @@ function changeCity(event)
                          var date = new Date();
                          var name = response.name;
                          $("#city-display").html(name);
-                         $("#city-buttons").remove(`#${name}`);
                          let lon = response.coord.lon;
                          let lat = response.coord.lat;
                          let queryURL2 = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${APIkey}`;
