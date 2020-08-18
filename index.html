@@ -11,6 +11,7 @@
 <body>
      <header class="d-block p-2 bg-primary text-white">
           <h1 class="text-center">Weather Dashboard</h1>
+          <p class="text-center" id="date-display">TIME</p>
      </header>
      <br />
 <div class="container">
@@ -25,11 +26,53 @@
                </div>
           </div>
           <div class="col-9">
-               <h2 id="city-display">City</h2>
-               <p id="temp">Temperature</p>
-               <p id ="humidity">Humidity</p>
-               <p id ="wind-speed">Wind Speed</p>
-               <p id="UVindex">UV index</p>
+               <div class="row">
+                    <div class="col-md card bg-primary" style="width: 18rem;">
+                         <h2 id="city-display">City</h2>
+                         <p id="temp">Temperature:</p>
+                         <p id ="humidity">Humidity:</p>
+                         <p id ="wind-speed">Wind Speed:</p>
+                         <p id="UVindex">UV index:</p>
+                    </div>
+               </div>
+               <h3>5 Day Forecast</h3>
+               <div class="row">
+                    <div class="col-md card bg-info" style="width: 18rem;">
+                         <p id="time-display-day1">Date:</p>
+                         <p id="temp-day1">Temperature:</p>
+                         <p id ="humidity-day1">Humidity:</p>
+                         <p id ="wind-speed-day1">Wind Speed:</p>
+                         <p id="UVindex-day1">UV index:</p>
+                    </div>
+                    <div class="col-md card bg-info" style="width: 18rem;">
+                         <p id="time-display-day2">Date:</p>
+                         <p id="temp-day2">Temperature:</p>
+                         <p id ="humidity-day2">Humidity:</p>
+                         <p id ="wind-speed-day2">Wind Speed:</p>
+                         <p id="UVindex-day2">UV index:</p>
+                    </div>
+                    <div class="col-md card bg-info" style="width: 18rem;">
+                         <p id="time-display-day3">Date:</p>
+                         <p id="temp-day3">Temperature:</p>
+                         <p id ="humidity-day3">Humidity:</p>
+                         <p id ="wind-speed-day3">Wind Speed:</p>
+                         <p id="UVindex-day3">UV index:</p>
+                    </div>
+                    <div class="col-md card bg-info" style="width: 18rem;">
+                         <p id="time-display-day4">Date:</p>
+                         <p id="temp-day4">Temperature:</p>
+                         <p id ="humidity-day4">Humidity:</p>
+                         <p id ="wind-speed-day4">Wind Speed:</p>
+                         <p id="UVindex-day4">UV index:</p>
+                    </div>
+                    <div class="col-md card bg-info" style="width: 18rem;">
+                         <p id="time-display-day5">Date:</p>
+                         <p id="temp-day5">Temperature:</p>
+                         <p id ="humidity-day5">Humidity:</p>
+                         <p id ="wind-speed-day5">Wind Speed:</p>
+                         <p id="UVindex-day5">UV index:</p>
+                    </div>
+               </div>
           </div>
      </div>
 

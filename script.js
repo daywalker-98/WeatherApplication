@@ -17,8 +17,9 @@ function searchCity(event)
           }).then(function(response) 
                     {
                          var name = response.name;
+                         var date = new Date(response.dt*1000);
                          $("#city-display").html(name);
-                         $("#city-buttons").remove(`#${name}`);
+                         $(`#${name}`).remove();
                          var $cityButton = $(`<button class="col-12"id="${name}"></button>`).text(name); 
                          $cityButton.html = name;
                          $("#city-buttons").append($cityButton);
@@ -36,19 +37,20 @@ function searchCity(event)
                                              $("#wind-speed").html("Wind speed: "+ response.current.wind_speed+" MPH");
                                              $("#UVindex").html("UV index: " + response.current.uvi);
                                              console.log(response);
+                                             for(let i = 1; i < 6; i++)
+                                             {
+                                                  var dateUnix = response.daily[i].dt;
+                                                  var dayDate = new Date(dateUnix*1000);
+                                                  $(`#time-display-day${i}`).html(`${dayDate}`);
+                                                  $(`#temp-day${i}`).html("Temperature: " + response.daily[i].temp.max + "°F");
+                                                  $(`#humidity-day${i}`).html("Humidity: "+ response.daily[i].humidity)+"%";
+                                                  $(`#wind-speed-day${i}`).html("Wind speed: "+ response.daily[i].wind_speed+" MPH");
+                                                  $(`#UVindex-day${i}`).html("UV index: " + response.daily[i].uvi);
+                                             }
                                         });
                               });
 }
-$("#searchForm").submit(function(event) 
-{
-     search($("#search-term").get(0));
-     if(event.keyCode == 13)
-     {
-          event.preventDefault();
-          $("#search-button").click();
-     }
-     return false;
-});
+
 function changeCity(event)
 {
      event.preventDefault();
@@ -62,7 +64,7 @@ function changeCity(event)
                     {
                          var date = new Date();
                          var name = response.name;
-                         $("#city-display").html(`${name} ${date}`);
+                         $("#city-display").html(name);
                          $("#city-buttons").remove(`#${name}`);
                          let lon = response.coord.lon;
                          let lat = response.coord.lat;
@@ -73,10 +75,27 @@ function changeCity(event)
                                    }).then(function(response)
                                         {
                                              $("#temp").html("Temperature: " + response.current.temp + "°F");
-                                             $("#humidity").html("Humidity: "+response.current.humidity);
+                                             $("#humidity").html("Humidity: "+ response.current.humidity)+"%";
                                              $("#wind-speed").html("Wind speed: "+ response.current.wind_speed+" MPH");
                                              $("#UVindex").html("UV index: " + response.current.uvi);
                                              console.log(response);
+                                             for(let i = 1; i < 6; i++)
+                                             {
+                                                  var dateUnix = response.daily[i].dt;
+                                                  var dayDate = new Date(dateUnix*1000);
+                                                  $(`#time-display-day${i}`).html(`${dayDate}`);
+                                                  $(`#temp-day${i}`).html("Temperature: " + response.daily[i].temp.max + "°F");
+                                                  $(`#humidity-day${i}`).html("Humidity: "+ response.daily[i].humidity)+"%";
+                                                  $(`#wind-speed-day${i}`).html("Wind speed: "+ response.daily[i].wind_speed+" MPH");
+                                                  $(`#UVindex-day${i}`).html("UV index: " + response.daily[i].uvi);
+                                             }
                                         });
                               });
 }
+$currentDate = document.getElementById("date-display");
+setInterval(function()
+{
+     let now = new Date();
+     $currentDate.textContent = now;
+     var hour = now.getHours();
+}, 100);
