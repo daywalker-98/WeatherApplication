@@ -9,7 +9,7 @@ function searchCity(event)
 {
      event.preventDefault();
      var cityName = $cityName.val();
-     let queryURL = `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&APPID=${APIkey}`;
+     let queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&APPID=${APIkey}`;
      //ajax query here
      $.ajax({
           url: queryURL,
